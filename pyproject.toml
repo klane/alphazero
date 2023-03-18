@@ -1,0 +1,10 @@
+[project]
+name = "alphazero"
+description = "A generic AlphaZero implementation with C++ and Rust backends"
+version = "0.1.0"
+authors = [
+    {name = "Kevin Lane", email = "lane.kevin.a@gmail.com"},
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
