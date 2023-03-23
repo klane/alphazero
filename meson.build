@@ -24,3 +24,5 @@ python.extension_module(
     link_with: board,
     install: true,
 )
+
+subdir('src/python')
