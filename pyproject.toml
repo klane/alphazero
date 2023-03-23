@@ -17,12 +17,3 @@ dependencies = [
 requires = ["conan", "meson-python"]
 build-backend = "build"
 backend-path = "."
-
-[tool.meson-python.args]
-dist = []
-setup = [
-    "-Ddefault_library=static",
-    "-Dpython.install_env=venv",
-]
-compile = []
-install = []
