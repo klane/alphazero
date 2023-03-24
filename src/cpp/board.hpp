@@ -46,6 +46,7 @@ class Board {
         Position player_position(Color player);
 
         void make_move(Color player, Position move);
+        void make_move(Color player, Position::size_type index);
         Board peek(Color player, Position move);
         void reset();
         Position valid_moves(Color player);

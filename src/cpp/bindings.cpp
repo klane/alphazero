@@ -40,7 +40,8 @@ PYBIND11_MODULE(alphazero_cpp, m) {
         .def("player_count", &Board::player_count)
         .def("player_position", &Board::player_position)
         .def("peek", &Board::peek)
-        .def("make_move", &Board::make_move)
+        .def("make_move", py::overload_cast<Color, Position>(&Board::make_move))
+        .def("make_move", py::overload_cast<Color, Position::size_type>(&Board::make_move))
         .def("reset", &Board::reset)
         .def("valid_moves", &Board::valid_moves);
 

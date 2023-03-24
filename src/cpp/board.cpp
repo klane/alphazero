@@ -29,6 +29,12 @@ void Board::make_move(Color player, Position move) {
     positions[player] |= move;
 }
 
+void Board::make_move(Color player, Position::size_type index) {
+    Position move(rows * cols);
+    move.set(index);
+    make_move(player, move);
+}
+
 int Board::num_empty() {
     return empty().count();
 }
