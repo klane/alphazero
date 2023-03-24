@@ -21,10 +21,12 @@ PYBIND11_MODULE(alphazero_cpp, m) {
         .def("all", &Position::all)
         .def("any", &Position::any)
         .def("count", &Position::count)
+        .def("find_first", &Position::find_first)
         .def("none", &Position::none)
         .def("reset", py::overload_cast<>(&Position::reset))
         .def("set", py::overload_cast<size_t, bool>(&Position::set), py::arg("n"), py::arg("val") = true)
-        .def("size", &Position::size);
+        .def("size", &Position::size)
+        .def("test", &Position::test);
 
     py::class_<Board>(m, "Board")
         .def(py::init<const uint8_t, const uint8_t>())
