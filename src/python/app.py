@@ -21,15 +21,18 @@ class App:
         self.size = size
         self.running = True
 
+        cell_height = self.size // self.game.rows
+        cell_width = self.size // self.game.cols
+
         screen_size = size, size
         self.screen = pg.display.set_mode(screen_size)
         self.board = pg.Rect(0, 0, size, size)
         self.cells: list[pg.Rect] = []
 
         for r, c in product(range(self.game.rows), range(self.game.cols)):
-            x = c * self.grid_width
-            y = r * self.grid_height
-            cell = pg.Rect(x, y, self.grid_width, self.grid_height)
+            x = c * cell_width
+            y = r * cell_height
+            cell = pg.Rect(x, y, cell_width, cell_height)
             self.cells.append(cell)
 
     def event_loop(self) -> None:
@@ -43,14 +46,6 @@ class App:
                     for i, c in enumerate(self.cells):
                         if c.collidepoint(pos):
                             print(f"Clicked on cell {i}")
-
-    @property
-    def grid_height(self) -> int:
-        return int(self.size // self.game.rows)
-
-    @property
-    def grid_width(self) -> int:
-        return int(self.size // self.game.cols)
 
     def render(self) -> None:
         pg.display.set_caption(CAPTION)
