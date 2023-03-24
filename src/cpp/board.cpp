@@ -21,6 +21,12 @@ Position Board::filled() {
     return positions[BLACK] | positions[WHITE];
 }
 
+Position Board::get_position(Position::size_type index) {
+    Position position(rows * cols);
+    position.set(index);
+    return position;
+}
+
 bool Board::is_full() {
     return filled().all();
 }
@@ -30,8 +36,7 @@ void Board::make_move(Color player, Position move) {
 }
 
 void Board::make_move(Color player, Position::size_type index) {
-    Position move(rows * cols);
-    move.set(index);
+    Position move = get_position(index);
     make_move(player, move);
 }
 

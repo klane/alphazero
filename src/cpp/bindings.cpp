@@ -35,6 +35,7 @@ PYBIND11_MODULE(alphazero_cpp, m) {
         .def_readonly("start_positions", &Board::start_positions)
         .def("empty", &Board::empty)
         .def("filled", &Board::filled)
+        .def("get_position", &Board::get_position)
         .def("is_full", &Board::is_full)
         .def("num_empty", &Board::num_empty)
         .def("player_count", &Board::player_count)

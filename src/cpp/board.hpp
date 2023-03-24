@@ -40,6 +40,7 @@ class Board {
 
         Position empty();
         Position filled();
+        Position get_position(Position::size_type index);
         bool is_full();
         int num_empty();
         int player_count(Color player);
