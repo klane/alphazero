@@ -25,7 +25,7 @@ class App:
 
         cell_height = self.size // self.game.rows
         cell_width = self.size // self.game.cols
-        self.move_radius = min(cell_height // 8, cell_width // 8)
+        self.move_radius = int(min(cell_height // 8, cell_width // 8))
 
         screen_size = size, size
         self.screen = pg.display.set_mode(screen_size)
