@@ -25,6 +25,7 @@ class App:
 
         cell_height = self.size // self.game.rows
         cell_width = self.size // self.game.cols
+        self.radius = int(min(cell_height // 2.5, cell_width // 2.5))
         self.move_radius = int(min(cell_height // 8, cell_width // 8))
 
         screen_size = size, size
@@ -61,6 +62,12 @@ class App:
 
         for c in self.cells:
             pg.draw.rect(self.screen, BACKGROUND_COLOR, c, 2)
+
+        for position in split_position(self.game.player_position(Color.BLACK)):
+            self.draw_circle(position, self.radius, PLAYER1_COLOR)
+
+        for position in split_position(self.game.player_position(Color.WHITE)):
+            self.draw_circle(position, self.radius, PLAYER2_COLOR)
 
         for position in split_position(self.game.valid_moves(self.current_player)):
             self.draw_circle(position, self.move_radius, MOVE_COLOR)
