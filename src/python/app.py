@@ -22,6 +22,7 @@ class App:
         self.size = size
         self.running = True
         self.current_player = Color.BLACK
+        self.turn = 0
 
         cell_height = self.size // self.game.rows
         cell_width = self.size // self.game.cols
@@ -49,15 +50,26 @@ class App:
             if event.type == pg.QUIT:
                 self.running = False
             elif event.type == pg.MOUSEBUTTONDOWN:
-                pos = pg.mouse.get_pos()
-                if self.board.collidepoint(pos):
-                    print("Clicked on the board")
-                    for i, c in enumerate(self.cells):
-                        if c.collidepoint(pos):
-                            print(f"Clicked on cell {i}")
+                self.handle_mouse(event.pos)
+
+    def handle_mouse(self, mouse_position: tuple[int, int]) -> None:
+        if self.board.collidepoint(mouse_position):
+            for i, c in enumerate(self.cells):
+                if c.collidepoint(mouse_position):
+                    if self.game.valid_moves(self.current_player).test(i):
+                        move = self.game.get_position(i)
+                        self.make_move(move)
+                    break
+
+    def make_move(self, move: Position) -> None:
+        self.game.make_move(self.current_player, move)
+        self.current_player = (
+            Color.BLACK if self.current_player == Color.WHITE else Color.WHITE
+        )
+        self.turn += 1
 
     def render(self) -> None:
-        pg.display.set_caption(CAPTION)
+        pg.display.set_caption(f'{CAPTION}: Turn {self.turn}')
         self.screen.fill(BOARD_COLOR)
 
         for c in self.cells:
