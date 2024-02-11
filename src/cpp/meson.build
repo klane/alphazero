@@ -15,9 +15,10 @@ board = library(
 )
 
 python.extension_module(
-    'alphazero_cpp',
+    'engine',
     'bindings.cpp',
     dependencies: cpp_deps + python_deps,
     link_with: board,
+    subdir: 'alphazero',
     install: true,
 )

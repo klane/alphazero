@@ -6,7 +6,7 @@
 namespace py = pybind11;
 using namespace alphazero;
 
-PYBIND11_MODULE(alphazero_cpp, m) {
+PYBIND11_MODULE(engine, m) {
     py::enum_<Color>(m, "Color")
         .value("BLACK", Color::BLACK)
         .value("WHITE", Color::WHITE);
