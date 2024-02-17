@@ -20,13 +20,15 @@ PYBIND11_MODULE(engine, m) {
         .def(py::init<const uint8_t>())
         .def("all", &Position::all)
         .def("any", &Position::any)
+        .def("capacity", &Position::capacity)
         .def("count", &Position::count)
         .def("find_first", &Position::find_first)
         .def("none", &Position::none)
         .def("reset", py::overload_cast<>(&Position::reset))
         .def("set", py::overload_cast<size_t, bool>(&Position::set), py::arg("n"), py::arg("val") = true)
         .def("size", &Position::size)
-        .def("test", &Position::test);
+        .def("test", &Position::test)
+        .def("to_ulong", &Position::to_ulong);
 
     py::class_<Board>(m, "Board")
         .def(py::init<const uint8_t, const uint8_t>())
