@@ -72,7 +72,7 @@ Coordinate position_to_coordinate(Position position, const uint8_t rows, const u
     if (index == Position::npos)
         return Coordinate(-1, -1);
 
-    return Coordinate((int) index / rows, index % cols);
+    return Coordinate(index / rows, index % cols);
 }
 
 PositionSet split_position(Position position) {
