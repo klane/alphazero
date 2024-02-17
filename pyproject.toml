@@ -16,4 +16,4 @@ dependencies = [
 [build-system]
 requires = ["conan", "meson-python"]
 build-backend = "build"
-backend-path = "."
+backend-path = ["."]
