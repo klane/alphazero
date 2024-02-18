@@ -12,4 +12,3 @@ project(
 python = import('python').find_installation('python3')
 
 subdir('src/cpp')
-subdir('src/python')
