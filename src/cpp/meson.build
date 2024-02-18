@@ -10,7 +10,7 @@ python_deps = [
 
 board = library(
     'board',
-    'board.cpp',
+    ['board.cpp', 'othello/board.cpp'],
     dependencies: cpp_deps,
 )
 

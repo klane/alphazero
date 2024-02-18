@@ -2,11 +2,14 @@
 #include <pybind11/stl.h>
 
 #include "board.hpp"
+#include "othello/board.hpp"
 
 namespace py = pybind11;
 using namespace alphazero;
 
 PYBIND11_MODULE(engine, m) {
+    py::module othello = m.def_submodule("othello");
+
     py::enum_<Color>(m, "Color")
         .value("BLACK", Color::BLACK)
         .value("WHITE", Color::WHITE);
@@ -47,6 +50,16 @@ PYBIND11_MODULE(engine, m) {
         .def("make_move", py::overload_cast<Color, Position::size_type>(&Board::make_move))
         .def("reset", &Board::reset)
         .def("valid_moves", &Board::valid_moves);
+
+    py::class_<othello::Board, Board>(othello, "OthelloBoard")
+        .def(py::init<>())
+        .def("score", &othello::Board::score)
+        .def("make_move", py::overload_cast<Color, Position>(&othello::Board::make_move))
+        .def("player_corners", &othello::Board::player_corners)
+        .def("player_edges", &othello::Board::player_edges)
+        .def("player_frontier", &othello::Board::player_frontier)
+        .def("player_interior", &othello::Board::player_interior)
+        .def("valid_moves", &othello::Board::valid_moves);
 
     m.def("position_to_coordinate", &position_to_coordinate);
     m.def("split_position", &split_position);

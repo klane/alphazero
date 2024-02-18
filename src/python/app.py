@@ -3,7 +3,8 @@ from itertools import product
 import pygame as pg
 from pygame import gfxdraw
 
-from alphazero.engine import Board, Color, Position, split_position
+from alphazero.engine import Color, Position, split_position
+from alphazero.engine.othello import OthelloBoard
 
 CAPTION = 'AlphaZero'
 PLAYER1_COLOR = pg.Color('black')
@@ -18,7 +19,7 @@ TEXT_COLOR = pg.Color('black')
 
 class App:
     def __init__(self, size: int) -> None:
-        self.game = Board(8, 8)
+        self.game = OthelloBoard()
         self.size = size
         self.running = True
         self.current_player = Color.BLACK
