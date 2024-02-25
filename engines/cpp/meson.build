@@ -23,13 +23,13 @@ python_deps = [
 
 board = library(
     'board',
-    ['board.cpp', 'othello/board.cpp'],
+    ['src/board.cpp', 'src/othello/board.cpp'],
     dependencies: cpp_deps,
 )
 
 python.extension_module(
     'engine',
-    'bindings.cpp',
+    'src/bindings.cpp',
     dependencies: cpp_deps + python_deps,
     link_with: board,
     subdir: 'alphazero',
