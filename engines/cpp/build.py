@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 import mesonpy
 from conan.api.conan_api import ConanAPI
@@ -7,7 +7,7 @@ from conan.cli.cli import Cli as ConanCLI
 from conans.errors import ConanException
 
 
-def _download_conan_packages(config_settings: Dict[str, Any]) -> None:
+def _download_conan_packages(config_settings: dict[str, Any]) -> None:
     source_dir = Path(__file__).parent
     conan_package_dir = config_settings.pop('package-dir', 'packages')
     meson_native_file = source_dir / conan_package_dir / 'conan_meson_native.ini'
@@ -36,7 +36,7 @@ def _download_conan_packages(config_settings: Dict[str, Any]) -> None:
 
 
 def build_sdist(
-    sdist_directory: str, config_settings: Dict[str, Any] | None = None
+    sdist_directory: str, config_settings: dict[str, Any] | None = None
 ) -> str:
     config_settings = {} if config_settings is None else config_settings
     _download_conan_packages(config_settings)
@@ -45,7 +45,7 @@ def build_sdist(
 
 def build_wheel(
     wheel_directory: str,
-    config_settings: Dict[str, Any] | None = None,
+    config_settings: dict[str, Any] | None = None,
     metadata_directory: str | None = None,
 ) -> str:
     config_settings = {} if config_settings is None else config_settings
