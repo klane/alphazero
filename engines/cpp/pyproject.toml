@@ -1,0 +1,9 @@
+[project]
+name = "alphazero-cpp"
+description = "C++ engine for AlphaZero"
+version = "0.1.0"
+
+[build-system]
+requires = ["conan", "meson-python"]
+build-backend = "build"
+backend-path = ["."]
