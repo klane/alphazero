@@ -12,6 +12,15 @@ def _download_conan_packages(config_settings: dict[str, Any]) -> None:
     conan_package_dir = config_settings.pop('package-dir', 'packages')
     meson_native_file = source_dir / conan_package_dir / 'conan_meson_native.ini'
 
+    setup_args_key = 'setup-args'
+    setup_args = config_settings.get(setup_args_key, [])
+    setup_args.append(f'--native-file={meson_native_file}')
+    config_settings[setup_args_key] = setup_args
+
+    if meson_native_file.exists():
+        print("Meson config already exists")
+        return
+
     conan_api = ConanAPI()
     conan_cli = ConanCLI(conan_api)
 
@@ -28,11 +37,6 @@ def _download_conan_packages(config_settings: dict[str, Any]) -> None:
         '--build=missing',
     )
     conan_cli.run(install_args)
-
-    setup_args_key = 'setup-args'
-    setup_args = config_settings.get(setup_args_key, [])
-    setup_args.append(f'--native-file={meson_native_file}')
-    config_settings[setup_args_key] = setup_args
 
 
 def build_sdist(
